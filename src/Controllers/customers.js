@@ -1,20 +1,29 @@
 const CustomersModel = require('../models/customers')
 const express = require('express')
+const {crypto} = require('../utils/passwords')
 
-function add(req, res){
+function index(req, res){
+    res.render('register', {
+        title: 'cadastro de clientes'
+    })
+}
+
+async function add(req, res){
     const{
         name,
         age,
         email,
         password,
     } = req.body
+
+    const passwordCripto = await crypto(password)
     
 
     const register = new CustomersModel({
         name,
         age, 
         email, 
-        password, 
+        password: passwordCripto, 
     })
 
     register.save() 
@@ -22,5 +31,6 @@ function add(req, res){
 }
 
 module.exports = {
-    add
+    add, 
+    index,
 }

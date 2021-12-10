@@ -3,7 +3,6 @@ const path = require('path')
 
 const db = require('./database')
 const router = require('./routes')
-const mongoose = require('mongoose')
 
 const app = express()
 
@@ -11,7 +10,7 @@ const app = express()
 db.connect()
 
 
-//definindo os template engine
+//definindo os template engine=
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
