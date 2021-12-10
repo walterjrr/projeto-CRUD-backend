@@ -2,14 +2,15 @@ const express = require('express')
 const path = require('path')
 
 const db = require('./database')
-const routes = require('./routes')
+const router = require('./routes')
+const mongoose = require('mongoose')
 
 const app = express()
 
 //conexao com o banco de dados
 db.connect()
 
-const schema = new mongoose.Schema({
+const Schema = new mongoose.Schema({
     name: String,
     age: Number,
     email: String,
@@ -18,7 +19,7 @@ const schema = new mongoose.Schema({
 
 //MVC model view controller
 
-const Model = mongoose.model('customers', schema)
+const Model = mongoose.model('customers', Schema)
 
 
 
@@ -38,7 +39,7 @@ app.use((req, res) => {
     res.send('pagina nao encontrada!')
 })
 
-app.use('/', routes)
+app.use('/', router)
 
 //executando o servidor 
 const port = process.env.PORT || 8080
