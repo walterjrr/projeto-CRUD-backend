@@ -1,12 +1,15 @@
 const mongoose = require('mongoose')
 
-const register = new Model({
-    name: 'walter',
-    age: 35,
-    email: 'jrwalter731@gmail.com',
-    password: '12345',
+const Schema = new mongoose.Schema({
+    name: String,
+    age: Number,
+    email: String,
+    password: String,
 })
 
-register.save()
+//MVC model view controller
+
+const Model = mongoose.model('customers', Schema)
+
 
 module.exports = Model
